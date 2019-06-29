@@ -21,7 +21,7 @@ export default class ContactListings extends Component {
   }
 
   handleClick(id){
-    
+    // TODO: Set id in state and render the appropriate contact 
   }
 
   render() {
