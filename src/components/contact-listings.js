@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { API_BASE_URL } from "../config";
 
 export default class ContactListings extends Component {
@@ -19,6 +20,10 @@ export default class ContactListings extends Component {
       );
   }
 
+  handleClick(id){
+    
+  }
+
   render() {
     const { error, contacts } = this.state;
 
@@ -30,10 +35,12 @@ export default class ContactListings extends Component {
     if (contacts.length) {
       contacts.forEach(contact => {
         const contactInfo = (
-          <div>
+          <div key={contact.id}>
             <p>Name: {contact.displayName}</p>
             <p>Company: {contact.company}</p>
-            <button>Click for more info</button>
+            <button onClick={() => this.handleClick(contact.id)}>
+              Click for more info
+            </button>
           </div>
         );
         contactsList.push(contactInfo);
@@ -41,7 +48,10 @@ export default class ContactListings extends Component {
     } else return <p>No contacts found yet. Add one to start.</p>;
 
     return (
+      <>
+      <Link to="/addContact">Add a Contact</Link>
       <ul>{contactsList}</ul>
+      </>
     )
   }
 }
